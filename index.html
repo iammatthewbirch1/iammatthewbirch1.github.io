@@ -1,0 +1,169 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>iammatthewbirch.github.io</title>
+    <style>
+        @import url("https://fonts.googleapis.com/css?family=Lato:100,300,400,700,900");
+        @import url("https://fonts.googleapis.com/css?family=Baumans");
+
+        * {
+            margin: 0;
+        }
+        body {
+            width: 100vw;
+            height: 100vh;
+            display: flex; 
+            justify-content: center;
+            flex-direction: column;
+        }
+
+        h1 {
+            font-family: 'Baumans';
+            font-size: 4em;
+            font-weight: 100;
+        }    
+
+        body, a, p {
+            font-family: 'Lato';
+            color: #202020;
+            font-size: 1.1em;
+        }
+
+        .container {    
+            margin-left: 10%;
+        }
+
+        .particles {
+            width: 100%;
+            height: 100%;
+            position: absolute;
+            top: 0;
+            left: 0;
+            overflow: hidden;
+            user-select: none;
+            pointer-events: none;
+        }
+
+        particle {
+            width: 10px;
+            height: 10px;
+            background: #00e888;
+            position: absolute;
+            border-radius: 50%;
+        }
+
+        @media screen and (max-width: 40em){
+            
+            h1 {
+                font-size: 2em;
+            }    
+            body, a, p {
+                font-size: 1em;
+            }
+        }
+
+    </style>
+</head>
+<body>
+    <div class="particles">
+        <!-- <particle/> -->
+    </div>
+    
+    <div class="container">
+        
+        <h3>Hey, its...</h3>
+        <h1>iammatthewbirch</h1>
+
+        <a href="https://iammatthewbirch.com"><p>here's my web design/dev website 👨🏻‍💻</p></a>
+        <a href="https://iammatthewbirch.com/Music"><p>here's my music website 🎵</p></a>
+        <a href=""><p>and my socials 🤟🏻</p></a>
+    </div>
+
+
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/jquery/2.1.3/jquery.min.js"></script>
+    
+    <script defer>
+        var d = document, $d = $(d),
+            w = window, $w = $(w),
+            wWidth = $w.width(), wHeight = $w.height(),
+            particles = $('.particles'),
+            particleCount = 0,
+            sizes = [ 15 ],
+            colors = [ '#00e888', '#1166a1' ],
+            
+            Xpos = $w.width() / 2, Ypos = -100;
+
+            function updateParticleCount () {
+                $('.particle-count > .number').text(particleCount);
+            };
+
+            $w
+            .on( 'resize' , function () {
+                wWidth = $w.width();
+                wHeight = $w.height();
+            });
+
+            var timer = setInterval(function () {
+                createParticle( event );
+            }, 3000 / 60)
+
+
+            function createParticle ( event ) {
+                var particle = $('<particle/>'),
+                    size = sizes[Math.floor(Math.random() * sizes.length)],
+                    color = colors[Math.floor(Math.random() * colors.length)],
+                    negative = size/2,
+                    speedHorz = Math.random() * 100,
+                    speedUp = Math.random() * 1,
+                    spinVal = 0,
+                    spinSpeed = 0,
+                    otime,
+                    time = otime = (1 + (.5 * Math.random())) * 1000,
+                    top = (Ypos - negative),
+                    left = (Xpos - negative),
+                    direction = Math.random() <=.5 ? -1 : 1 ,
+                    life = 30;
+                
+                particle.css({
+                    height: size + 'px',
+                    width: size + 'px',
+                    top: top + 'px',
+                    left: left + 'px',
+                    background: color,
+                    transform: 'rotate(' + spinVal + 'deg)',
+                    webkitTransform: 'rotate(' + spinVal + 'deg)'
+                }).appendTo( particles );
+                particleCount++;
+                updateParticleCount();
+                
+                var particleTimer = setInterval(function () {
+                    time = time - life;
+                    left = left - (speedHorz * direction);
+                    top = top - speedUp;
+                    speedUp = Math.min(size, speedUp - 1);
+                    spinVal = spinVal + spinSpeed;
+                    
+                    
+                    particle.css({
+                        height: size + 'px',
+                        width: size + 'px',
+                        top: top + 'px',
+                        left: left + 'px',
+                        opacity: ((time / otime)/2) + .25,
+                        transform: 'rotate(' + spinVal + 'deg)',
+                        webkitTransform: 'rotate(' + spinVal + 'deg)'
+                    });
+                    
+                    if( time <= 0 || left <= -size || left >= wWidth + size || top >= wHeight + size ) {
+                        particle.remove();
+                        particleCount--;
+                        updateParticleCount();
+                        clearInterval(particleTimer);
+                    }
+                }, 2000 / 60);  
+            }
+    </script>
+</body>
+</html>
