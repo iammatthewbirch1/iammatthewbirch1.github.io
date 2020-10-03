@@ -29,10 +29,17 @@
             font-family: 'Lato';
             color: #202020;
             font-size: 1.1em;
+            transition: transform 0.3s ease-in-out;
+        }
+
+        p:hover {
+            transform: translatex(10px);
         }
 
         .container {    
             margin-left: 10%;
+            width: min-content;
+            position: relative;
         }
 
         .particles {
@@ -53,6 +60,37 @@
             position: absolute;
             border-radius: 50%;
         }
+        ::selection {
+        background: #00e888; /* WebKit/Blink Browsers */
+        }
+
+        div#sm-media-links {
+            position: absolute;
+            height: 55px;
+            opacity: 0;
+            bottom: 5px;
+            transform: translateY(100%);
+            background: #ffffff;
+            transition: bottom 0.1s ease-in-out, opacity 0.3s;
+            border-radius: 10px;
+            box-shadow: 2px 4px 11px 0px #0000005c;
+            pointer-events: none;
+        }
+
+        #sm-media-links img {
+            width: 40px;
+            margin: 8px;
+            transition: transform 0.3s ease-in-out;
+        }
+        #sm-media-links img:hover {
+            transform: translateY(-5px);
+        }
+
+        #sm-media-links.active{
+            opacity: 1;
+            bottom: -10px;
+            pointer-events: inherit;
+        }
 
         @media screen and (max-width: 40em){
             
@@ -61,6 +99,15 @@
             }    
             body, a, p {
                 font-size: 1em;
+            }
+
+            #sm-media-links img {
+                width: 25px;
+                margin: 5px;
+                transition: transform 0.3s ease-in-out;
+            }
+            div#sm-media-links {
+                height: 35px;
             }
         }
 
@@ -73,13 +120,20 @@
     
     <div class="container">
         
-        <h3>Hey, its...</h3>
+        <h3>Hey,</h3>
         <h1>iammatthewbirch</h1>
 
-        <a href="https://iammatthewbirch.com"><p>here's my web design/dev website 👨🏻‍💻</p></a>
-        <a href="https://iammatthewbirch.com/Music"><p>here's my music website 🎵</p></a>
-        <a href=""><p>and my socials 🤟🏻</p></a>
+        <a target="_blank" href="https://iammatthewbirch.com"><p>here's my web design/dev website 👨🏻‍💻</p></a>
+        <a target="_blank" href="https://iammatthewbirch.com/Music"><p>here's my music website 🎵</p></a>
+        <a style="text-decoration: underline; cursor: pointer;" onclick="document.getElementById('sm-media-links').classList='active'"><p>and my socials 🤟🏻</p></a>
+        <div id="sm-media-links">
+            <a target="_blank" href="https://www.twitter.com/iammatthewbirch"><img src="img/twitter.svg" alt="twitter"></a>
+            <a target="_blank" href="https://www.youtube.com/iammatthewbirch"><img src="img/youtube.svg" alt="youtube.svg"></a>
+            <a target="_blank" href="https://www.linkedin.com/in/iammatthewbirch"><img src="img/linkedin.svg" alt="linkedin.svg"></a>
+            <a target="_blank" href="https://www.instagram.com/iammatthewbirch"><img src="img/instagram.svg" alt="instagram.svg"></a>
+        </div>
     </div>
+
 
 
     <script src="https://cdnjs.cloudflare.com/ajax/libs/jquery/2.1.3/jquery.min.js"></script>
