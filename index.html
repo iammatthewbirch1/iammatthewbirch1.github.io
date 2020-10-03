@@ -32,7 +32,7 @@
             transition: transform 0.3s ease-in-out;
         }
 
-        p:hover {
+        .container p:hover {
             transform: translatex(10px);
         }
 
@@ -61,7 +61,7 @@
             border-radius: 50%;
         }
         ::selection {
-        background: #00e888; /* WebKit/Blink Browsers */
+            background: #00e888; /* WebKit/Blink Browsers */
         }
 
         div#sm-media-links {
@@ -90,6 +90,24 @@
             opacity: 1;
             bottom: -10px;
             pointer-events: inherit;
+        }
+
+        .github-link {
+            position: absolute;
+            bottom: 5px;
+            right: 5px;
+        }
+
+        .github-link p{
+            font-family: 'Lato';
+            color: #202020;
+            font-size: 0.7em;
+            text-decoration: underline;
+            transition: color 0.3s ease-in-out;
+        }
+
+        .github-link:hover p{
+            color: #808080;
         }
 
         @media screen and (max-width: 40em){
@@ -124,15 +142,19 @@
         <h3>Hey,</h3>
         <h1>iammatthewbirch</h1>
 
-        <a target="_blank" href="https://iammatthewbirch.com"><p>here's my web design/dev website 👨🏻‍💻</p></a>
-        <a target="_blank" href="https://iammatthewbirch.com/Music"><p>here's my music website 🎵</p></a>
-        <a style="text-decoration: underline; cursor: pointer;" onclick="document.getElementById('sm-media-links').classList='active'"><p>and my socials 🤟🏻</p></a>
+        <a target="_blank" href="https://iammatthewbirch.com"><p>here's my web design/dev website<span> 👨🏻‍💻</span></p></a>
+        <a target="_blank" href="https://iammatthewbirch.com/Music"><p>here's my music website<span> 🎵</span></p></a>
+        <a style="text-decoration: underline; cursor: pointer;" onclick="document.getElementById('sm-media-links').classList='active'"><p>and my socials<span> 🤟🏻</span></p></a>
         <div id="sm-media-links">
             <a target="_blank" href="https://www.twitter.com/iammatthewbirch"><img src="img/twitter.svg" alt="twitter"></a>
             <a target="_blank" href="https://www.youtube.com/iammatthewbirch"><img src="img/youtube.svg" alt="youtube.svg"></a>
             <a target="_blank" href="https://www.linkedin.com/in/iammatthewbirch"><img src="img/linkedin.svg" alt="linkedin.svg"></a>
             <a target="_blank" href="https://www.instagram.com/iammatthewbirch"><img src="img/instagram.svg" alt="instagram.svg"></a>
         </div>
+    </div>
+
+    <div class="github-link">
+        <a href="https://github.com/iammatthewbirch1"><p>powered by github.io<span> ⚡</span></p></a>
     </div>
 
 
@@ -158,6 +180,7 @@
             .on( 'resize' , function () {
                 wWidth = $w.width();
                 wHeight = $w.height();
+                Xpos = $w.width() / 2, Ypos = -100;
             });
 
             var timer = setInterval(function () {
